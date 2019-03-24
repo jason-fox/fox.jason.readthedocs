@@ -6,7 +6,7 @@
 This is a DITA-OT Plug-in which creates a set of output files suitable to create a [ReadTheDocs](https://readthedocs.org) Documentation Project. The transform is an extends the existing DITA-OT markdown plug-in (`org.lwdita`)
 and creates a well-formatted `mkdocs.yaml` file
 
-### Sample MkDocs.yaml File
+### Sample `mkdocs.yaml` File
 
 ```yaml
 site_name: 'ReadTheDocs Plug-in'
@@ -27,7 +27,7 @@ theme: mkdocs
     -   [Installing DITA-OT](#installing-dita-ot)
     -   [Installing the Plug-in](#installing-the-plug-in)
 -   [Usage](#usage)
-    -   [Creating a ReadtheDocs Project from DITA content](#creating-a- readthedocs-Project-from-dita-content)
+    -   [Creating a ReadtheDocs Project from DITA content](#creating-a-readthedocs-Project-from-dita-content)
     -   [Parameter Reference](#parameter-reference)
 -   [Contribute](#contribute)
 -   [License](#license)
