@@ -1,10 +1,10 @@
 <h1>Usage</h1>
 
-Like any other transform, when invoked directly, the prettier requires an input document
+Like any other transform, when invoked directly, the readthedocs transform requires an input document
 
 ### Creating a ReadtheDocs Project from DITA content
 
-To prettify DITA files for a document, use the `readthedocs` transform,  set the `--input` parameter to point to a `*.ditamap` file:
+To creating the files for a ReadtheDocs project, use the `readthedocs` transform and set the `--input` parameter to point to a `*.ditamap` file:
 
 ```bash
 PATH_TO_DITA_OT/bin/dita -f readthedocs -i document.ditamap
