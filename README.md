@@ -1,7 +1,9 @@
 # ReadTheDocs Plugin for DITA-OT
 
 [![license](https://img.shields.io/github/license/jason-fox/fox.jason.readthedocs.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.3/)
+[![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.3/)<br/>
+[![Documentation Status](https://readthedocs.org/projects/readthedocsdita-ot/badge/?version=latest)](https://readthedocsdita-ot.readthedocs.io/en/latest/?badge=latest)
+
 
 This is a DITA-OT Plug-in which creates a set of output files suitable to create a [ReadTheDocs](https://readthedocs.org) Documentation Project. The transform is an extension of the existing DITA-OT markdown plug-in (`org.lwdita`)
 and creates a well-formatted `mkdocs.yaml` file
