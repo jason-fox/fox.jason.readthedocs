@@ -80,7 +80,7 @@ PATH_TO_DITA_OT/bin/dita -f readthedocs -i document.ditamap
 
 ### Parameter Reference
 
--    `args.css`" - Specifies the name of a custom `.css` file. The css is added to the `mkdocs.yml` file as `extra_css`
+-    `args.css` - Specifies the name of a custom `.css` file. The css is added to the `mkdocs.yml` file as `extra_css`
 -    `args.csspath` - Specifies the location of a copied `.css` file relative to the output directory.
 -    `args.cssroot` - Specifies the directory that contains the custom `.css` file.
 -    `args.readthedocs.theme` - Specifies a `theme` to style the ReadTheDocs output (default: `readthedocs`)
