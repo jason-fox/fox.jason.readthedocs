@@ -4,7 +4,7 @@ Like any other transform, when invoked directly, the readthedocs transform requi
 
 ### Creating a ReadtheDocs Project from DITA content
 
-To creating the files for a ReadtheDocs project, use the `readthedocs` transform and set the `--input` parameter to point to a `*.ditamap` file:
+To create the files for a ReadtheDocs project, use the `readthedocs` transform and set the `--input` parameter to point to a `*.ditamap` file:
 
 ```bash
 PATH_TO_DITA_OT/bin/dita -f readthedocs -i document.ditamap
