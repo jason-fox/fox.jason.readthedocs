@@ -68,7 +68,7 @@ The `dita` command line tool requires no additional configuration.
 
 # Usage
 
-Like any other transform, when invoked directly, the prettier requires an input document
+Like any other transform, when invoked directly, the readthedocs transform requires an input document
 
 ### Creating a ReadtheDocs Project from DITA content
 
