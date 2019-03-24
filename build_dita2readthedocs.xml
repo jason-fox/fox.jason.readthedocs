@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of the DITA ReadTheDocs project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<project name="fox.jason.readthedocs">
+
+
+	<scriptdef language="javascript" name="create-readthedocs">
+		<attribute name="file"/>
+		<attribute name="dir"/>
+<![CDATA[
+
+var file = attributes.get("file");
+var dir = attributes.get("dir");
+
+var pluginDir =  project.getProperty("dita.plugin.fox.jason.readthedocs.dir");
+eval( '' + org.apache.tools.ant.util.FileUtils.readFully(
+		   new java.io.FileReader(pluginDir + '/resource/readthedocs.js' ) ) );
+
+ReadTheDocs.rewriteYAML(file, dir);
+
+]]>
+	</scriptdef>
+
+	<!--
+		Setting up ReadtheDocs processing. Sets up ANT variable overrides.
+	-->
+	<target name="readthedocs.init">
+		 <property name="markdown.type" value="github"/>
+
+
+		 <!-- begin to check and init css relevant properties -->
+	
+		<condition property="user.csspath.url">
+			<or>
+				<contains string="${args.csspath}" substring="http://"/>
+				<contains string="${args.csspath}" substring="https://"/>
+		  	</or>
+		</condition>
+			
+		<condition property="user.csspath" value="">
+			<or>
+				<not>
+					<isset property="args.csspath"/>
+				</not>
+				<isabsolute path="${args.csspath}"/>
+			</or>
+		</condition>
+		<property name="user.csspath" value="${args.csspath}/"/>
+
+		<condition property="user.css.real" value="${args.cssroot}${file.separator}${args.css}">
+			<isset property="args.cssroot"/>
+		</condition>
+		<property name="user.css.real" value="${args.css}"/>
+		
+		<local name="user.css.basename"/>
+		<basename property="user.css.basename" file="${args.css}"/>
+		<condition property="args.css.file" value="${user.css.basename}">
+			<or>
+				<available file="${user.css.real}" type="file"/>
+				<isset property="user.csspath.url"/>
+		  	</or>
+		</condition>
+		
+		<!-- end to check and init css relevant parameters -->
+
+		<dirname property="args.input.dir" file="${args.input}"/>
+		<condition property="user.readthedocs.template" value="${args.input.dir}/${args.readthedocs.template}">
+			<and>
+				<available file="${args.input.dir}/${args.readthedocs.template}" type="file"/>
+				<isset property="args.readthedocs.template"/>
+			</and>
+		</condition>
+
+		<property name="args.readthedocs.theme" value="readthedocs"/>
+	</target>
+
+	<target name="readthedocs">
+		<fileset id="dist.contents" dir="${dita.output.dir}">
+			<include name="**/*.md"/>
+		</fileset>
+
+		<delete dir="${dita.output.dir}/docs"/>
+		<create-readthedocs dir="${dita.output.dir}" file="index.md"/>
+		<move todir="${dita.output.dir}/docs" >  
+			<fileset refid="dist.contents"/>  
+		</move> 
+
+		<delete includeemptydirs="true">
+			<fileset dir="${dita.output.dir}">
+				<and>
+					<size value="0"/>
+					<type type="dir"/>
+				</and>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="readthedocs.css" unless="user.csspath.url" description="Copy CSS files">
+		<condition property="user.copycss.yes">
+			<and>
+				<equals arg1="${args.copycss}" arg2="yes"/>
+				<available file="${user.css.real}" type="file"/>
+			</and>
+		</condition>
+		<property name="user.csspath.real" location="${dita.output.dir}/docs/${user.csspath}"/>
+		<mkdir dir="${user.csspath.real}"/>
+		<!-- Copy user specify css file when required -->
+		<antcall target="readthedocs.copy-css-user"/>
+	</target>
+
+	<target name="readthedocs.copy-css-user" if="user.copycss.yes">
+		<copy file="${user.css.real}" todir="${user.csspath.real}"/>
+	</target>
+	
+	<!--
+		Ant target executed to create a readthedocs file
+	-->
+	<target depends="readthedocs.init, dita2markdown, readthedocs, readthedocs.css" name="dita2readthedocs"/>
+</project>

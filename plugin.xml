@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This file is part of the DITA ReadTheDocs project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<plugin id="fox.jason.readthedocs" version="1.0.0">
+	<!--
+		This plugin is based on and 'extends' the plugin named below.
+	-->
+	<require plugin="org.lwdita"/>
+	<!--
+		Add new value to list of valid transformation type names.
+	-->
+	<feature extension="ant.import" file="build_dita2readthedocs.xml"/>
+	<transtype abstract="false" desc="Markdown for ReadtheDocs" name="readthedocs">
+		<param name="args.css" desc="Specifies the name of a custom .css file." type="file"/>
+		<param name="args.csspath" desc="Specifies the location of a copied .css file relative to the output directory." type="file"/>
+		<param name="args.cssroot" desc="Specifies the directory that contains the custom .css file." type="file"/>
+
+		<param name="args.readthedocs.theme" desc="Specifies theme to style the output" type="string"/>
+		 <param name="args.readthedocs.template" desc="Specifies a template mkdocs file to use" type="file"/>
+	</transtype>
+
+</plugin>
