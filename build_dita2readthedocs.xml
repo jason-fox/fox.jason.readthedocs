@@ -18,7 +18,7 @@ var pluginDir =  project.getProperty("dita.plugin.fox.jason.readthedocs.dir");
 eval( '' + org.apache.tools.ant.util.FileUtils.readFully(
 		   new java.io.FileReader(pluginDir + '/resource/readthedocs.js' ) ) );
 
-ReadTheDocs.rewriteYAML(file, dir);
+ReadTheDocs.rewriteAsYAML(file, dir);
 
 ]]>
 	</scriptdef>

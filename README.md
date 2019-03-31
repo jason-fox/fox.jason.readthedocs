@@ -29,7 +29,8 @@ theme: mkdocs
     -   [Installing DITA-OT](#installing-dita-ot)
     -   [Installing the Plug-in](#installing-the-plug-in)
 -   [Usage](#usage)
-    -   [Creating a ReadtheDocs Project from DITA content](#creating-a-readthedocs-Project-from-dita-content)
+    -   [Creating a ReadtheDocs Project out of existing DITA content](#creating-a-readthedocs-project-out-of-existing-dita-content)
+    -   [Coverting a ReadtheDocs Project into DITA content](#coverting-a-readthedocs-into-dita)
     -   [Parameter Reference](#parameter-reference)
 -   [Contribute](#contribute)
 -   [License](#license)
@@ -70,14 +71,22 @@ The `dita` command line tool requires no additional configuration.
 
 # Usage
 
-Like any other transform, when invoked directly, the readthedocs transform requires an input document
+Like any other transform, when invoked directly, the ReadTheDocs transforms require an input document
 
-### Creating a ReadtheDocs Project from DITA content
+### Creating a ReadtheDocs Project out of existing DITA content
 
 To create the files for a ReadtheDocs project, use the `readthedocs` transform,  set the `--input` parameter to point to a `*.ditamap` file:
 
 ```bash
 PATH_TO_DITA_OT/bin/dita -f readthedocs -i document.ditamap
+```
+
+### Coverting a ReadtheDocs Project into DITA content
+
+To create the files for a DITA-OT project, use the `mkdocs2dita` transform and set the `--input` parameter to point to a `mkdocs.yml` file:
+
+```bash
+PATH_TO_DITA_OT/bin/dita -f mkdocs2dita -i mkdocs.yml
 ```
 
 ### Parameter Reference
