@@ -37,8 +37,8 @@ Additionally it is possible to use the plug-in to create a `*.ditamap` file from
   </frontmatter>
   <chapter>
     <topicmeta>
-    	<navtitle>ReadTheDocs</navtitle>
-	  </topicmeta>
+        <navtitle>ReadTheDocs</navtitle>
+    </topicmeta>
     <topicref format="md" href="topics/examples.md"/>
     <topicref format="md" href="topics/features-full.md"/>
     <topicref format="md" href="topics/basic-usage.md"/>
