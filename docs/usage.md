@@ -10,6 +10,14 @@ To create the files for a ReadtheDocs project, use the `readthedocs` transform a
 PATH_TO_DITA_OT/bin/dita -f readthedocs -i document.ditamap
 ```
 
+### Coverting a ReadtheDocs Project into DITA content
+
+To create the files for a DITA-OT project, use the `mkdocs2dita` transform and set the `--input` parameter to point to a `mkdocs.yml` file:
+
+```bash
+PATH_TO_DITA_OT/bin/dita -f mkdocs2dita -i mkdocs.yml
+```
+
 ### Parameter Reference
 
 -    `args.css` - Specifies the name of a custom `.css` file. The css is added to the `mkdocs.yml` file as `extra_css`
