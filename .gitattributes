@@ -1,1 +1,2 @@
-build_dita*.xml linguist-language=Ant Build System
+build_dita2mkdocs2dita.xml linguist-language=Ant Build System
+build_dita2readthedocs.xml linguist-language=Ant Build System
