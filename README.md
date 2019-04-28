@@ -77,7 +77,7 @@ Like any other transform, when invoked directly, the ReadTheDocs transforms requ
 
 To create the files for a ReadtheDocs project, use the `readthedocs` transform,  set the `--input` parameter to point to a `*.ditamap` file:
 
-```bash
+```console
 PATH_TO_DITA_OT/bin/dita -f readthedocs -i document.ditamap
 ```
 
@@ -85,7 +85,7 @@ PATH_TO_DITA_OT/bin/dita -f readthedocs -i document.ditamap
 
 To create the files for a DITA-OT project, use the `mkdocs2dita` transform and set the `--input` parameter to point to a `mkdocs.yml` file:
 
-```bash
+```console
 PATH_TO_DITA_OT/bin/dita -f mkdocs2dita -i mkdocs.yml
 ```
 
