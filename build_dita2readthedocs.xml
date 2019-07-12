@@ -6,22 +6,33 @@
 <project name="fox.jason.readthedocs">
 
 
-	<scriptdef language="javascript" name="create-readthedocs">
-		<attribute name="file"/>
-		<attribute name="dir"/>
-<![CDATA[
+	<target depends="build-init" name="mkdocs2dita.init">
+		<!-- This defines the input file -->
+		<dirname property="args.input.dir" file="${args.input}"/>
+		<property name="mkdocs.file" value="${args.input.dir}/mkdocs.yml"/>
 
-var file = attributes.get("file");
-var dir = attributes.get("dir");
+		<dita-ot-fail id="DOTA069F">
+			<condition>
+				<not>
+					<available file="${mkdocs.file}" type="file"/>
+				</not>
+			</condition>
+			<param name="1" value="${mkdocs.file}"/>
+		</dita-ot-fail>
+		<typedef file="${dita.plugin.fox.jason.readthedocs.dir}/resource/antlib.xml"/>
+	</target>
 
-var pluginDir =  project.getProperty("dita.plugin.fox.jason.readthedocs.dir");
-eval( '' + org.apache.tools.ant.util.FileUtils.readFully(
-		   new java.io.FileReader(pluginDir + '/resource/readthedocs.js' ) ) );
 
-ReadTheDocs.rewriteAsYAML(file, dir);
 
-]]>
-	</scriptdef>
+	<target name="mkdocs2dita">
+		<copy todir="${dita.output.dir}">
+  			<fileset dir="${args.input.dir}/docs" excludes="mkdocs.yml"/>
+		</copy>
+		<create-mkdocs-ditamap file="${mkdocs.file}" dir="${dita.output.dir}"/>
+	</target>
+
+
+	
 
 	<!--
 		Setting up ReadtheDocs processing. Sets up ANT variable overrides.
@@ -60,7 +71,7 @@ ReadTheDocs.rewriteAsYAML(file, dir);
 			<or>
 				<available file="${user.css.real}" type="file"/>
 				<isset property="user.csspath.url"/>
-		  	</or>
+			</or>
 		</condition>
 		
 		<!-- end to check and init css relevant parameters -->
@@ -74,6 +85,7 @@ ReadTheDocs.rewriteAsYAML(file, dir);
 		</condition>
 
 		<property name="args.readthedocs.theme" value="readthedocs"/>
+		<typedef file="${dita.plugin.fox.jason.readthedocs.dir}/resource/antlib.xml"/>
 	</target>
 
 	<target name="readthedocs">
@@ -115,7 +127,12 @@ ReadTheDocs.rewriteAsYAML(file, dir);
 	</target>
 	
 	<!--
-		Ant target executed to create a readthedocs file
+		Ant target executed to create a readthedocs YAML file
 	-->
 	<target depends="readthedocs.init, dita2markdown, readthedocs, readthedocs.css" name="dita2readthedocs"/>
+
+	<!--
+		Ant target executed to create a  Ditamap from a readthedocs YAML file
+	-->
+	<target depends="mkdocs2dita.init, mkdocs2dita" name="dita2mkdocs2dita"/>
 </project>

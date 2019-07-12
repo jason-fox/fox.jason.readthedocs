@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--ant-->
+<!--
+	This file is part of the DITA-OT Pretty DITA Plug-in project.
+	See the accompanying LICENSE file for applicable licenses.
+-->
+<antlib>
+
+	<scriptdef language="javascript" name="create-mkdocs-ditamap" src="${dita.plugin.fox.jason.readthedocs.dir}/resource/create-ditamap.js">
+		<attribute name="file"/>
+		<attribute name="dir"/>
+	</scriptdef>
+
+	<scriptdef language="javascript" name="create-readthedocs" src="${dita.plugin.fox.jason.readthedocs.dir}/resource/create-readthedocs.js">
+		<attribute name="file"/>
+		<attribute name="dir"/>
+	</scriptdef>
+
+
+</antlib>

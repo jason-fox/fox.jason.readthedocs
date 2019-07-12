@@ -12,7 +12,6 @@
 		Add new value to list of valid transformation type names.
 	-->
 	<feature extension="ant.import" file="build_dita2readthedocs.xml"/>
-	<feature extension="ant.import" file="build_dita2mkdocs2dita.xml"/>
 
 	<transtype abstract="false" desc="Markdown for ReadtheDocs" name="readthedocs">
 		<param name="args.css" desc="Specifies the name of a custom .css file." type="file"/>
