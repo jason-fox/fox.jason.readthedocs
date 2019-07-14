@@ -73,6 +73,8 @@ dita -install https://github.com/jason-fox/fox.jason.readthedocs/archive/master.
 
 The `dita` command line tool requires no additional configuration.
 
+---
+
 # Usage
 
 Like any other transform, when invoked directly, the ReadTheDocs transforms require an input document
