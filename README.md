@@ -1,7 +1,7 @@
 # ReadTheDocs Plugin for DITA-OT [<img src="https://jason-fox.github.io/fox.jason.readthedocs/readthedocs.png" align="right" width="300">](https://readthedocsdita-ot.rtfd.io/)
 
 [![license](https://img.shields.io/github/license/jason-fox/fox.jason.readthedocs.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.3/)<br/>
+[![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.3/)
 [![Build Status](https://travis-ci.org/jason-fox/fox.jason.readthedocs.svg?branch=master)](https://travis-ci.org/jason-fox/fox.jason.readthedocs)
 [![Coverage Status](https://coveralls.io/repos/github/jason-fox/fox.jason.readthedocs/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/fox.jason.readthedocs?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/readthedocsdita-ot/badge/?version=latest)](https://readthedocsdita-ot.readthedocs.io/en/latest/?badge=latest)
