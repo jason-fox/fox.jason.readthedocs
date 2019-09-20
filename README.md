@@ -7,7 +7,7 @@
 [![Documentation Status](https://readthedocs.org/projects/readthedocsdita-ot/badge/?version=latest)](https://readthedocsdita-ot.readthedocs.io/en/latest/?badge=latest)
 
 
-This is a DITA-OT Plug-in which creates a set of output files suitable to create a [ReadTheDocs](https://readthedocs.org) Documentation Project. The transform is an extension of the existing DITA-OT markdown plug-in (`org.lwdita`)
+This is a [DITA-OT Plug-in](https://www.dita-ot.org/plugins) which creates a set of output files suitable to create a [ReadTheDocs](https://readthedocs.org) Documentation Project. The transform is an extension of the existing DITA-OT markdown plug-in (`org.lwdita`)
 and creates a well-formatted `mkdocs.yaml` file
 
 ### Sample `mkdocs.yaml` File
@@ -49,9 +49,9 @@ that you upgrade to the latest version.
 The ReadTheDocs Plug-in for DITA-OT is a plug-in for the DITA Open Toolkit.
 
 -   Full installation instructions for downloading DITA-OT can be found
-    [here](https://www.dita-ot.org/3.2/topics/installing-client.html).
+    [here](https://www.dita-ot.org/3.3/topics/installing-client.html).
 
-    1.  Download the `dita-ot-3.3.zip` package from the project website at
+    1.  Download the `dita-ot-3.3.4.zip` package from the project website at
         [dita-ot.org/download](https://www.dita-ot.org/download)
     2.  Extract the contents of the package to the directory where you want to install DITA-OT.
     3.  **Optional**: Add the absolute path for the `bin` directory to the _PATH_ system variable. This defines the
