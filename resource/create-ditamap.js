@@ -3,16 +3,19 @@
  *  See the accompanying LICENSE file for applicable licenses.
  */
 
-function analyseYAML(file) {
-  var indexFile = org.apache.tools.ant.util.FileUtils.readFully(new java.io.FileReader(file));
+var file = attributes.get("file");
+var dir = attributes.get("dir");
+
+function analyseYAML(filename) {
+  var indexFile = org.apache.tools.ant.util.FileUtils.readFully(new java.io.FileReader(filename));
   var input = indexFile.split('\n');
   var pages = false;
   var title = '';
   var chapters = [{ title: 'Abstract', topics: [] }];
   var currentChapter = 0;
 
-  var trimData = function(input, key) {
-    text = input
+  var trimData = function(inputText, key) {
+    var text = inputText
       .replace(key, '')
       .replace("'", '')
       .replace('"', '');
@@ -53,9 +56,9 @@ function analyseYAML(file) {
     title: title,
     chapters: chapters
   };
-};
+}
 
-function rewriteAsDitamap (yaml, dir) {
+function rewriteAsDitamap (yaml) {
   var abstractHref = yaml.chapters[0].topics[0].href;
 
   if (abstractHref === 'index.md') {
@@ -95,8 +98,7 @@ function rewriteAsDitamap (yaml, dir) {
   task.setFile(new java.io.File(dir + '/document.ditamap'));
   task.setMessage(ditamap);
   task.perform();
-};
+}
 
-var file = attributes.get("file");
-var dir = attributes.get("dir");
-rewriteAsDitamap(analyseYAML(file), dir);
+
+rewriteAsDitamap(analyseYAML(file));

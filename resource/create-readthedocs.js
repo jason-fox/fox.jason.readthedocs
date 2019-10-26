@@ -3,7 +3,10 @@
  *  See the accompanying LICENSE file for applicable licenses.
  */
 
-function rewriteAsYAML(file, dir) {
+var file = attributes.get("file");
+var dir = attributes.get("dir");
+
+function rewriteAsYAML(filename) {
   var output = [];
   var indent = '';
 
@@ -12,7 +15,7 @@ function rewriteAsYAML(file, dir) {
   var theme = project.getProperty('args.readthedocs.theme') || 'readthedocs';
   var template = project.getProperty('user.readthedocs.template') || null;
 
-  var indexFile = org.apache.tools.ant.util.FileUtils.readFully(new java.io.FileReader(dir + '/' + file));
+  var indexFile = org.apache.tools.ant.util.FileUtils.readFully(new java.io.FileReader(dir + '/' + filename));
   var input = indexFile.split('\n');
   var indexTopic = null;
 
@@ -63,8 +66,7 @@ function rewriteAsYAML(file, dir) {
   move.setFile(new java.io.File(dir + '/' + indexTopic));
   move.setTofile(new java.io.File(dir + '/index.md'));
   move.perform();
-};
+}
 
-var file = attributes.get("file");
-var dir = attributes.get("dir");
-rewriteAsYAML(file, dir);
+
+rewriteAsYAML(file);
