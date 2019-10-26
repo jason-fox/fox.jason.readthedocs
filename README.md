@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/jason-fox/fox.jason.readthedocs.svg?branch=master)](https://travis-ci.org/jason-fox/fox.jason.readthedocs)
 [![Coverage Status](https://coveralls.io/repos/github/jason-fox/fox.jason.readthedocs/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/fox.jason.readthedocs?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/readthedocsdita-ot/badge/?version=latest)](https://readthedocsdita-ot.readthedocs.io/en/latest/?badge=latest)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fox.jason.readthedocs&metric=alert_status)](https://sonarcloud.io/dashboard?id=fox.jason.readthedocs)
 
 
 This is a [DITA-OT Plug-in](https://www.dita-ot.org/plugins) which creates a set of output files suitable to create a [ReadTheDocs](https://readthedocs.org) Documentation Project. The transform is an extension of the existing DITA-OT markdown plug-in (`org.lwdita`)
