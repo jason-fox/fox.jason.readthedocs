@@ -26,6 +26,10 @@ pages:
 theme: mkdocs
 ```
 
+:arrow_forward: [Video from DITA-OT Day 2019](https://youtu.be/vobY_ha5nd0)
+
+[![](https://jason-fox.github.io/fox.jason.readthedocs/javascript-video.png)](https://youtu.be/vobY_ha5nd0)
+
 <details>
 <summary><strong>Table of Contents</strong></summary>
 
