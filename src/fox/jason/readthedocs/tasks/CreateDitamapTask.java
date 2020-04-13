@@ -55,10 +55,7 @@ public class CreateDitamapTask extends Task {
   }
 
   private String trimData(String inputText, String key) {
-    String text = inputText
-      .replace(key, "")
-      .replace("'", "")
-      .replace("\"", "");
+    String text = inputText.replace(key, "").replace("'", "").replace("\"", "");
     if (text.endsWith("\"") || text.endsWith("'")) {
       return text.substring(0, text.length() - 1).trim();
     }
@@ -96,8 +93,8 @@ public class CreateDitamapTask extends Task {
               .get(currentChapter)
               .topics.add(
                 new TopicInfo(
-                  trimData(line.substring(1, line.indexOf(":")).trim(), ""),
-                  trimData(line.substring(line.indexOf(":") + 1).trim(), "")
+                  trimData(line.substring(1, line.indexOf(':')).trim(), ""),
+                  trimData(line.substring(line.indexOf(':') + 1).trim(), "")
                 )
               );
           }
@@ -166,7 +163,12 @@ public class CreateDitamapTask extends Task {
 
   private void rewriteAsDitamap(YamlInfo yaml) {
     boolean initialTopic = true;
-    String abstractHref = yaml.getChapters().get(0).getTopics().get(0).getHref();
+    String abstractHref = yaml
+      .getChapters()
+      .get(0)
+      .getTopics()
+      .get(0)
+      .getHref();
 
     if ("index.md".equals(abstractHref)) {
       Move move = (Move) getProject().createTask("move");
@@ -176,39 +178,44 @@ public class CreateDitamapTask extends Task {
       abstractHref = "abstract.md";
     }
 
-    String ditamap = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    ditamap += "<!DOCTYPE bookmap\n";
-    ditamap += "  PUBLIC \"-//OASIS//DTD DITA BookMap//EN\" \"bookmap.dtd\">\n";
-    ditamap += "<bookmap>\n";
-    ditamap += "  <title>" + yaml.getTitle() + "</title>\n";
-    ditamap += "  <frontmatter>\n";
-    ditamap +=
-      "    <bookabstract format=\"md\" href=\"" + abstractHref + "\"/>\n";
-    ditamap += "    <booklists>\n";
-    ditamap += "      <toc/>\n";
-    ditamap += "    </booklists>\n";
-    ditamap += "  </frontmatter>\n";
+    StringBuilder bld = new StringBuilder();
+    bld.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    bld.append("<!DOCTYPE bookmap\n");
+    bld.append(
+      "  PUBLIC \"-//OASIS//DTD DITA BookMap//EN\" \"bookmap.dtd\">\n"
+    );
+    bld.append("<bookmap>\n");
+    bld.append("  <title>" + yaml.getTitle() + "</title>\n");
+    bld.append("  <frontmatter>\n");
+    bld.append(
+      "    <bookabstract format=\"md\" href=\"" + abstractHref + "\"/>\n"
+    );
+    bld.append("    <booklists>\n");
+    bld.append("      <toc/>\n");
+    bld.append("    </booklists>\n");
+    bld.append("  </frontmatter>\n");
 
     for (ChapterInfo chapter : yaml.getChapters()) {
-      if (initialTopic){
+      if (initialTopic) {
         // Skip the intial topic - it is the abstract.
         initialTopic = false;
         continue;
       }
-      ditamap =
-        ditamap +
+      bld.append(
         "  <chapter>\n    <topicmeta>\n     <navtitle>" +
         chapter.getTitle() +
-        "</navtitle>\n   </topicmeta>\n";
+        "</navtitle>\n   </topicmeta>\n"
+      );
       for (TopicInfo topic : chapter.getTopics()) {
-        ditamap +=
-          "    <topicref format=\"md\" href=\"" +
-          topic.getHref() +
-          "\"/>\n";
+        bld.append(
+          "    <topicref format=\"md\" href=\"" + topic.getHref() + "\"/>\n"
+        );
       }
-      ditamap += "  </chapter>\n";
+      bld.append("  </chapter>\n");
     }
-    ditamap += "</bookmap>\n";
+    bld.append("</bookmap>\n");
+
+    String ditamap = bld.toString();
 
     Echo task = (Echo) getProject().createTask("echo");
     task.setFile(new java.io.File(dir + "/document.ditamap"));
