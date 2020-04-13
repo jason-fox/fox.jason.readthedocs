@@ -6,6 +6,4 @@ pages:
 -  'ReadTheDocs':
      -  'topic 1': 'topic1.md'
      -  'topic 2': 'topic2.md'
-
-
 theme: readthedocs

@@ -5,15 +5,14 @@
 -->
 <antlib>
 
-	<scriptdef language="javascript" name="create-mkdocs-ditamap" src="${dita.plugin.fox.jason.readthedocs.dir}/resource/create-ditamap.js">
-		<attribute name="file"/>
-		<attribute name="dir"/>
-	</scriptdef>
-
-	<scriptdef language="javascript" name="create-readthedocs" src="${dita.plugin.fox.jason.readthedocs.dir}/resource/create-readthedocs.js">
-		<attribute name="file"/>
-		<attribute name="dir"/>
-	</scriptdef>
-
-
+	<taskdef classname="fox.jason.readthedocs.tasks.CreateDitamapTask" name="create-mkdocs-ditamap" >
+		<classpath>
+			<pathelement location="${readthedocs.jar}"/>
+		</classpath>
+	</taskdef>
+	<taskdef classname="fox.jason.readthedocs.tasks.CreateReadTheDocsTask" name="create-readthedocs" >
+		<classpath>
+			<pathelement location="${readthedocs.jar}"/>
+		</classpath>
+	</taskdef>
 </antlib>
