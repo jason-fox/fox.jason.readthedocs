@@ -111,8 +111,16 @@ public class CreateDitamapTask extends Task {
   }
 
   private class YamlInfo {
-    public String title;
-    public List<ChapterInfo> chapters;
+    private String title;
+    private List<ChapterInfo> chapters;
+
+    public String getTitle() {
+      return this.title;
+    }
+
+    public List<ChapterInfo> getChapters() {
+      return this.chapters;
+    }
 
     public YamlInfo(String title, List<ChapterInfo> chapters) {
       this.title = title;
@@ -121,8 +129,16 @@ public class CreateDitamapTask extends Task {
   }
 
   private class ChapterInfo {
-    public String title;
-    public List<TopicInfo> topics;
+    private String title;
+    private List<TopicInfo> topics;
+
+    public String getTitle() {
+      return this.title;
+    }
+
+    public List<TopicInfo> getTopics() {
+      return this.topics;
+    }
 
     public ChapterInfo(String title, List<TopicInfo> topics) {
       this.title = title;
@@ -131,8 +147,16 @@ public class CreateDitamapTask extends Task {
   }
 
   private class TopicInfo {
-    public String title;
-    public String href;
+    private String title;
+    private String href;
+
+    public String getTitle() {
+      return this.title;
+    }
+
+    public String getHref() {
+      return href;
+    }
 
     public TopicInfo(String title, String href) {
       this.title = title;
@@ -141,7 +165,8 @@ public class CreateDitamapTask extends Task {
   }
 
   private void rewriteAsDitamap(YamlInfo yaml) {
-    String abstractHref = yaml.chapters.get(0).topics.get(0).href;
+    boolean initialTopic = true;
+    String abstractHref = yaml.getChapters().get(0).getTopics().get(0).getHref();
 
     if ("index.md".equals(abstractHref)) {
       Move move = (Move) getProject().createTask("move");
@@ -155,7 +180,7 @@ public class CreateDitamapTask extends Task {
     ditamap += "<!DOCTYPE bookmap\n";
     ditamap += "  PUBLIC \"-//OASIS//DTD DITA BookMap//EN\" \"bookmap.dtd\">\n";
     ditamap += "<bookmap>\n";
-    ditamap += "  <title>" + yaml.title + "</title>\n";
+    ditamap += "  <title>" + yaml.getTitle() + "</title>\n";
     ditamap += "  <frontmatter>\n";
     ditamap +=
       "    <bookabstract format=\"md\" href=\"" + abstractHref + "\"/>\n";
@@ -164,16 +189,21 @@ public class CreateDitamapTask extends Task {
     ditamap += "    </booklists>\n";
     ditamap += "  </frontmatter>\n";
 
-    for (int i = 1; i < yaml.chapters.size(); i++) {
+    for (ChapterInfo chapter : yaml.getChapters()) {
+      if (initialTopic){
+        // Skip the intial topic - it is the abstract.
+        initialTopic = false;
+        continue;
+      }
       ditamap =
         ditamap +
         "  <chapter>\n    <topicmeta>\n     <navtitle>" +
-        yaml.chapters.get(i).title +
+        chapter.getTitle() +
         "</navtitle>\n   </topicmeta>\n";
-      for (int j = 0; j < yaml.chapters.get(i).topics.size(); j++) {
+      for (TopicInfo topic : chapter.getTopics()) {
         ditamap +=
           "    <topicref format=\"md\" href=\"" +
-          yaml.chapters.get(i).topics.get(j).href +
+          topic.getHref() +
           "\"/>\n";
       }
       ditamap += "  </chapter>\n";
