@@ -19,7 +19,7 @@
 			</condition>
 			<param name="1" value="${mkdocs.file}"/>
 		</dita-ot-fail>
-		<typedef file="${dita.plugin.fox.jason.readthedocs.dir}/resource/antlib.xml"/>
+		<taskdef resource="fox/jason/readthedocs/antlib.xml"/>
 	</target>
 
 
