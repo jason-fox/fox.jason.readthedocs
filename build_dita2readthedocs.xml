@@ -85,7 +85,7 @@
 		</condition>
 
 		<property name="args.readthedocs.theme" value="readthedocs"/>
-		<typedef file="${dita.plugin.fox.jason.readthedocs.dir}/resource/antlib.xml"/>
+		<taskdef resource="fox/jason/readthedocs/antlib.xml"/>
 	</target>
 
 	<target name="readthedocs">
