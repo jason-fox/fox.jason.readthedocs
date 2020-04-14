@@ -87,16 +87,16 @@ public class CreateReadTheDocsTask extends Task {
     for (String inputLine : indexFile.split("\n")) {
       String line = inputLine.trim();
       if (line.startsWith("#")) {
-        line = "site_name: '" + line.substring(line.indexOf(" ")) + "'\n";
+        line = "site_name: '" + line.substring(line.indexOf(' ')) + "'\n";
       } else if (line.startsWith("-")) {
         if (line.contains("[")) {
           String title = line.substring(
-            line.indexOf("[") + 1,
+            line.indexOf('[') + 1,
             line.indexOf("](")
           );
           String url = line.substring(
             line.indexOf("](") + 2,
-            line.lastIndexOf(")")
+            line.lastIndexOf(')')
           );
 
           if (indexTopic != null) {
@@ -107,7 +107,7 @@ public class CreateReadTheDocsTask extends Task {
           }
         } else {
           indent = "    ";
-          line = "-  '" + line.substring(line.indexOf(" ")).trim() + "':";
+          line = "-  '" + line.substring(line.indexOf(' ')).trim() + "':";
         }
       }
 
