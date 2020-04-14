@@ -19,8 +19,6 @@
 			</condition>
 			<param name="1" value="${mkdocs.file}"/>
 		</dita-ot-fail>
-
-		<property name="readthedocs.jar" value="${dita.plugin.fox.jason.readthedocs.dir}/lib/readthedocs-1.0.jar"/>
 		<typedef file="${dita.plugin.fox.jason.readthedocs.dir}/resource/antlib.xml"/>
 	</target>
 
