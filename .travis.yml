@@ -1,0 +1,41 @@
+language: java
+sudo: required
+dist: bionic
+
+jdk:
+  - openjdk11
+
+addons:
+  apt:
+    packages:
+      - ant
+  sonarcloud:
+    organization: "dita-ot-plugins"
+    token:
+      secure: "kvayKWTFPttNm1E61hfkj5WOOnLniSrtWsocC3DKSbgqsfJgtXg0h1jqXHCVSXWChyS87RvEkIi+l1akOrdRiNYl3JglXvpuD2KGQkQYGh7WESIBuV9GrL4w5FQqq8EoMQZI0awuW5smIiL5nDv2mz7htb6kPJrOeOxvcPTupcnfBl+KlPNxQoDFqZ2TAfCAybYwPOfZ/8LgV1o7qXKY4Yw5Ou1FZ3bXjv4WGZmdEydf2s+lXPXqTGnOR32FADsb/XQXFS+1Ff+Jk/R2R+EbtLlXomqAMJspgj/L8sY4GXgmG+Ufpf6r0PjZrVoKbCkJKMDq9fOmpKEHfGopECps12otXigntMsVOfF0k2f5Kq66nj/E72chhzJpmupo3+Cq1Wjf5uu4VfqeBALzSN9zzMBmqPTwAvtDJRs0mimzLtgw8YgudaaTLM0iImXCBTpr20cIdRIkDrEz5e1efpLZFakQZhc94FFZOrxLek9aSE16FIUOom9+4w5Ug71yDUglbVesyzWA67eX7gKLTSQlvdy/0m9HoFm6ZE7mDGF//8XQe+x9FX4ATeaeeD4xMreCPxn10hE9ZxqERZ5xQQECT35YGxm8XczOSAPggane7PIIledQ0z6xI26G9q3E8Civ8KBPJx/bCUhh2C8WXD+BcwAHnnPtJRVfshqjwg//zD0="
+
+env:
+  - DITA_OT=3.4.1
+
+before_install:
+  - zip -r fox.jason.readthedocs.zip . -x *.zip* *.git/* *temp/* *out/*
+  - curl -LO https://github.com/dita-ot/dita-ot/releases/download/$DITA_OT/dita-ot-$DITA_OT.zip
+  - unzip -q dita-ot-$DITA_OT.zip
+  - chmod +x dita-ot-$DITA_OT/bin/dita
+
+install:
+  - dita-ot-$DITA_OT/bin/dita --install https://github.com/jason-fox/fox.jason.unit-test/archive/master.zip
+  - dita-ot-$DITA_OT/bin/dita --install fox.jason.readthedocs.zip
+
+before_script:
+  - dita-ot-$DITA_OT/bin/dita --input dita-ot-$DITA_OT/plugins/fox.jason.readthedocs -f xsl-instrument
+
+script:
+  - dita-ot-$DITA_OT/bin/dita --input dita-ot-$DITA_OT/plugins/fox.jason.readthedocs -f unit-test --output . -v
+
+after_success:
+  - mvn clean compile
+  - cp dita-ot-$DITA_OT/plugins/fox.jason.unit-test/resource/pom.xml pom.xml
+  - mvn org.eluder.coveralls:coveralls-maven-plugin:report
+  - rm -rf dita-ot-$DITA_OT
+  - sonar-scanner  

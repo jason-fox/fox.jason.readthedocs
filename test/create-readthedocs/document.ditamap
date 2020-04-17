@@ -2,6 +2,12 @@
 <!DOCTYPE bookmap PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd">
 <bookmap>
 	<title>ReadTheDocs Plug-in</title>
+	<frontmatter>
+		<bookabstract format="dita" type="topic" href="topic0.dita"/>
+		<booklists>
+			<toc/>
+		</booklists>
+	</frontmatter>
 	<chapter>
 		<topicmeta>
 			<navtitle>ReadTheDocs</navtitle>
