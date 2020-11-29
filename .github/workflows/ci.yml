@@ -32,4 +32,6 @@ jobs:
       - name: Run DITA-OT Unit Test
         uses: jason-fox/dita-unit-test-action@master
         with:
+          dita-ot-version: 3.5.4
           plugin: 'fox.jason.readthedocs'
+          push-to-coveralls: true
