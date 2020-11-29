@@ -34,4 +34,5 @@ jobs:
         with:
           dita-ot-version: 3.5.4
           plugin: 'fox.jason.readthedocs'
-          push-to-coveralls: true
+        env:
+          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
