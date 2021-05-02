@@ -78,6 +78,8 @@ public class CreateDitamapTask extends Task {
         title = trimData(line, "site_name:");
       } else if (line.startsWith("pages:")) {
         pages = true;
+      } else if (line.startsWith("nav:")) {
+        pages = true;
       } else if (pages) {
         if (line.startsWith("-")) {
           if (line.endsWith(":")) {
