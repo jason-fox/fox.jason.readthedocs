@@ -3,7 +3,7 @@
   This file is part of the DITA ReadTheDocs project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<project name="fox.jason.readthedocs">
+<project name="fox.jason.readthedocs" xmlns:readthedocs="antlib:fox.jason.readthedocs">
 
 
 	<target depends="build-init" name="mkdocs2dita.init">
@@ -19,7 +19,6 @@
 			</condition>
 			<param name="1" value="${mkdocs.file}"/>
 		</dita-ot-fail>
-		<taskdef resource="fox/jason/readthedocs/antlib.xml"/>
 	</target>
 
 
@@ -28,11 +27,9 @@
 		<copy todir="${dita.output.dir}">
   			<fileset dir="${args.input.dir}/docs" excludes="mkdocs.yml"/>
 		</copy>
-		<create-mkdocs-ditamap file="${mkdocs.file}" dir="${dita.output.dir}"/>
+		<readthedocs:create-mkdocs-ditamap file="${mkdocs.file}" dir="${dita.output.dir}"/>
 	</target>
 
-
-	
 
 	<!--
 		Setting up ReadtheDocs processing. Sets up ANT variable overrides.
@@ -85,7 +82,6 @@
 		</condition>
 
 		<property name="args.readthedocs.theme" value="readthedocs"/>
-		<taskdef resource="fox/jason/readthedocs/antlib.xml"/>
 	</target>
 
 	<target name="readthedocs">
@@ -94,7 +90,7 @@
 		</fileset>
 
 		<delete dir="${dita.output.dir}/docs"/>
-		<create-readthedocs dir="${dita.output.dir}" file="index.md"/>
+		<readthedocs:create-readthedocs dir="${dita.output.dir}" file="index.md"/>
 		<move todir="${dita.output.dir}/docs" >  
 			<fileset refid="dist.contents"/>  
 		</move> 
