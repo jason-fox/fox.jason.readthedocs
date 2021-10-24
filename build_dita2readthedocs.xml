@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><!--ant-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!--ant-->
 <!--
   This file is part of the DITA ReadTheDocs project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<project name="fox.jason.readthedocs" xmlns:readthedocs="antlib:fox.jason.readthedocs">
+<project
+  name="fox.jason.readthedocs"
+  xmlns:readthedocs="antlib:fox.jason.readthedocs"
+>
 
 
 	<target depends="build-init" name="mkdocs2dita.init">
@@ -27,7 +31,10 @@
 		<copy todir="${dita.output.dir}">
   			<fileset dir="${args.input.dir}/docs" excludes="mkdocs.yml"/>
 		</copy>
-		<readthedocs:create-mkdocs-ditamap file="${mkdocs.file}" dir="${dita.output.dir}"/>
+		<readthedocs:create-mkdocs-ditamap
+      file="${mkdocs.file}"
+      dir="${dita.output.dir}"
+    />
 	</target>
 
 
@@ -57,7 +64,10 @@
 		</condition>
 		<property name="user.csspath" value="${args.csspath}/"/>
 
-		<condition property="user.css.real" value="${args.cssroot}${file.separator}${args.css}">
+		<condition
+      property="user.css.real"
+      value="${args.cssroot}${file.separator}${args.css}"
+    >
 			<isset property="args.cssroot"/>
 		</condition>
 		<property name="user.css.real" value="${args.css}"/>
@@ -74,7 +84,10 @@
 		<!-- end to check and init css relevant parameters -->
 
 		<dirname property="args.input.dir" file="${args.input}"/>
-		<condition property="user.readthedocs.template" value="${args.input.dir}/${args.readthedocs.template}">
+		<condition
+      property="user.readthedocs.template"
+      value="${args.input.dir}/${args.readthedocs.template}"
+    >
 			<and>
 				<available file="${args.input.dir}/${args.readthedocs.template}" type="file"/>
 				<isset property="args.readthedocs.template"/>
@@ -91,7 +104,7 @@
 
 		<delete dir="${dita.output.dir}/docs"/>
 		<readthedocs:create-readthedocs dir="${dita.output.dir}" file="index.md"/>
-		<move todir="${dita.output.dir}/docs" >  
+		<move todir="${dita.output.dir}/docs">  
 			<fileset refid="dist.contents"/>  
 		</move> 
 
@@ -105,14 +118,21 @@
 		</delete>
 	</target>
 
-	<target name="readthedocs.css" unless="user.csspath.url" description="Copy CSS files">
+	<target
+    name="readthedocs.css"
+    unless="user.csspath.url"
+    description="Copy CSS files"
+  >
 		<condition property="user.copycss.yes">
 			<and>
 				<equals arg1="${args.copycss}" arg2="yes"/>
 				<available file="${user.css.real}" type="file"/>
 			</and>
 		</condition>
-		<property name="user.csspath.real" location="${dita.output.dir}/docs/${user.csspath}"/>
+		<property
+      name="user.csspath.real"
+      location="${dita.output.dir}/docs/${user.csspath}"
+    />
 		<mkdir dir="${user.csspath.real}"/>
 		<!-- Copy user specify css file when required -->
 		<antcall target="readthedocs.copy-css-user"/>
@@ -125,7 +145,10 @@
 	<!--
 		Ant target executed to create a readthedocs YAML file
 	-->
-	<target depends="readthedocs.init, dita2markdown, readthedocs, readthedocs.css" name="dita2readthedocs"/>
+	<target
+    depends="readthedocs.init, dita2markdown, readthedocs, readthedocs.css"
+    name="dita2readthedocs"
+  />
 
 	<!--
 		Ant target executed to create a  Ditamap from a readthedocs YAML file
