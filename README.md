@@ -4,7 +4,6 @@
 [![DITA-OT 4.0](https://img.shields.io/badge/DITA--OT-4.0-green.svg)](http://www.dita-ot.org/4.0)
 [![CI](https://github.com/jason-fox/fox.jason.readthedocs/workflows/CI/badge.svg)](https://github.com/jason-fox/fox.jason.readthedocs/actions?query=workflow%3ACI)
 [![Coverage Status](https://coveralls.io/repos/github/jason-fox/fox.jason.readthedocs/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/fox.jason.readthedocs?branch=master)
-[![Documentation Status](https://readthedocs.org/projects/readthedocsdita-ot/badge/?version=latest)](https://readthedocsdita-ot.readthedocs.io/en/latest/?badge=latest)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fox.jason.readthedocs&metric=alert_status)](https://sonarcloud.io/dashboard?id=fox.jason.readthedocs)
 
 This is a [DITA-OT Plug-in](https://www.dita-ot.org/plugins) which creates a set of output files suitable to create a
