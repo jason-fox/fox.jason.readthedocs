@@ -42,7 +42,8 @@
 		Setting up ReadtheDocs processing. Sets up ANT variable overrides.
 	-->
 	<target name="readthedocs.init">
-		 <property name="markdown.type" value="github"/>
+		<property name="build-step.copy-image" value="false"/>
+		<property name="markdown.type" value="github"/>
 
 
 		 <!-- begin to check and init css relevant properties -->
@@ -119,6 +120,10 @@
 		<move todir="${dita.output.dir}/docs">  
 			<fileset refid="dist.contents"/>  
 		</move> 
+		<copy todir="${dita.output.dir}/docs">  
+			<ditafileset format="image" />
+      <jobmapper/> 
+		</copy> 
 
 		<delete includeemptydirs="true">
 			<fileset dir="${dita.output.dir}">
