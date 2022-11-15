@@ -12,7 +12,7 @@
 	<!--
 		Add new value to list of valid transformation type names.
 	-->
-	<feature extension="dita.conductor.lib.import" file="lib/readthedocs-1.1.jar"/>
+	<feature extension="dita.conductor.lib.import" file="lib/readthedocs-1.2.jar"/>
 	<feature extension="ant.import" file="build_dita2readthedocs.xml"/>
 
 	<transtype abstract="false" desc="Markdown for ReadtheDocs" name="readthedocs">
@@ -42,6 +42,14 @@
       desc="Specifies a template mkdocs file to use"
       type="file"
     />
+     <param
+      name="args.readthedocs.use.pages"
+      desc="Specifies whether to use pages rather than nav"
+      type="enum"
+    >
+      <val>yes</val>
+      <val default="true">no</val>
+    </param>
 	</transtype>
 	<transtype abstract="false" desc="Ditamap from mkdocs.yml" name="mkdocs2dita"/>
 

@@ -54,7 +54,7 @@
 		  	</or>
 		</condition>
 			
-		<condition property="user.csspath" value="">
+		<condition property="user.csspath" value="" else="${args.csspath}/">
 			<or>
 				<not>
 					<isset property="args.csspath"/>
@@ -62,7 +62,6 @@
 				<isabsolute path="${args.csspath}"/>
 			</or>
 		</condition>
-		<property name="user.csspath" value="${args.csspath}/"/>
 
 		<condition
       property="user.css.real"
@@ -95,6 +94,10 @@
 		</condition>
 
 		<property name="args.readthedocs.theme" value="readthedocs"/>
+		<property name="args.readthedocs.use.pages" value="no"/>
+		<condition property="args.readthedocs.nav" value="pages:${line.separator}-  Home: index.md" else="nav:${line.separator}-  Home: index.md">
+			<equals arg1="${args.readthedocs.use.pages}" arg2="yes"/>
+		</condition>
 	</target>
 
 	<target name="readthedocs">

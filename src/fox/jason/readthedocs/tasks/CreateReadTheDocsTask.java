@@ -102,7 +102,7 @@ public class CreateReadTheDocsTask extends Task {
           if (indexTopic != null) {
             line = indent + " -  '" + title + "': '" + url + "'";
           } else {
-            line = "pages:\n-  Home: index.md";
+            line = getProject().getProperty("args.readthedocs.nav");
             indexTopic = url;
           }
         } else {
