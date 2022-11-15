@@ -92,6 +92,15 @@
 				<isset property="args.readthedocs.template"/>
 			</and>
 		</condition>
+		<condition
+      property="user.readthedocs.template"
+      value="${args.readthedocs.template}"
+    >
+			<and>
+				<available file="${args.readthedocs.template}" type="file"/>
+				<isset property="args.readthedocs.template"/>
+			</and>
+		</condition>
 
 		<property name="args.readthedocs.theme" value="readthedocs"/>
 		<property name="args.readthedocs.use.pages" value="no"/>
