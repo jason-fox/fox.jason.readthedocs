@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
-<concept id="topic_1" xml:lang="en-US">
-	<title>Topic 1</title>
-	<conbody>
-		<p>Lorem ipsum dolor sit amet consectetur adipiscing, elit porttitor taciti nostra dis potenti donec, fusce gravida primis metus.</p>
-		<p> <image placement="break" href="media/iphonexr.jpg" id="image_1"></image> </p>
-	</conbody>
-</concept>
